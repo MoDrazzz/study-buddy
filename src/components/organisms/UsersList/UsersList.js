@@ -1,17 +1,16 @@
 import React from 'react';
 import { users } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledList } from 'components/organisms/UsersList/UsersList.styles';
-import { Fluid } from 'components/atoms/Fluid/Fluid';
+import { Wrapper, StyledList } from 'components/organisms/UsersList/UsersList.styles';
 
 const UsersList = () => (
-  <Fluid>
+  <Wrapper>
     <StyledList>
       {users.map((userData, i) => (
         <UsersListItem index={i} userData={userData} />
       ))}
     </StyledList>
-  </Fluid>
+  </Wrapper>
 );
 
 export default UsersList;
