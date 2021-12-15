@@ -7,8 +7,8 @@ import { Fluid } from 'components/atoms/Fluid/Fluid';
 const UsersList = () => (
   <Fluid>
     <StyledList>
-      {users.map((userData) => (
-        <UsersListItem userData={userData} />
+      {users.map((userData, i) => (
+        <UsersListItem index={i} userData={userData} />
       ))}
     </StyledList>
   </Fluid>
