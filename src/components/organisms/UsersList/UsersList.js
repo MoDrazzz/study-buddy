@@ -1,26 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { StyledList } from 'components/organisms/UsersList/UsersList.styles';
-import { UserShape } from 'types/UserShape';
 import { Title } from 'components/atoms/Title/Title';
+import { UsersContext } from 'providers/UsersProvider';
 
-const UsersList = ({ users, deleteUser }) => {
+const UsersList = () => {
+  const { users } = useContext(UsersContext);
+
   return (
     <>
       <Title>Students list</Title>
       <StyledList>
         {users.map((userData) => (
-          <UsersListItem key={userData.name} deleteUser={deleteUser} userData={userData} />
+          <UsersListItem key={userData.name} userData={userData} />
         ))}
       </StyledList>
     </>
   );
-};
-
-UsersList.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.shape(UserShape)).isRequired,
-  deleteUser: PropTypes.func.isRequired,
 };
 
 export default UsersList;
