@@ -6,7 +6,22 @@ import { screen, fireEvent } from '@testing-library/react';
 import { renderWithProviders } from 'helpers/renderWithProviders';
 
 describe('Form Field', () => {
-  it('Renders the component', () => {
+  it('Adds new user to the list', () => {
+    renderWithProviders(
+      <>
+        <AddUser />
+        <Dashboard />
+      </>
+    );
+
+    fireEvent.change(screen.getByTestId('Name'), { target: { value: 'Grzesiu' } });
+    fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '89%' } });
+    fireEvent.change(screen.getByTestId('Average'), { target: { value: '4.1' } });
+    fireEvent.click(screen.getByTestId('Consent'));
+    fireEvent.click(screen.getByText('Add'));
+    screen.getByText('Grzesiu');
+  });
+  it('Prevents adding new user if the consent is not checked', () => {
     renderWithProviders(
       <>
         <AddUser />
@@ -18,6 +33,7 @@ describe('Form Field', () => {
     fireEvent.change(screen.getByTestId('Attendance'), { target: { value: '89%' } });
     fireEvent.change(screen.getByTestId('Average'), { target: { value: '4.1' } });
     fireEvent.click(screen.getByText('Add'));
-    screen.getByText('Grzesiu');
+    const newUser = screen.queryByText('Grzesiu');
+    expect(newUser).not.toBeInTheDocument();
   });
 });

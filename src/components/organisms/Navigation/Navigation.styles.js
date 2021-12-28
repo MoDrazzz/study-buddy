@@ -2,13 +2,17 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.nav`
+  /* position: absolute; */
+  /* left: 0; */
+  height: 100vh;
+  width: 140px;
   position: absolute;
   left: 0;
-  height: 100%;
-  width: 140px;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  grid-row: 1 / 3;
+  grid-column: 1 / 3;
   border-right: 2px solid ${({ theme }) => theme.colors.lightPurple};
 `;
 
