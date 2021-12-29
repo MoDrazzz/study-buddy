@@ -8,7 +8,7 @@ const Navigation = () => (
       <br />
       Buddy
     </Logo>
-    <StyledLink to="/">Home</StyledLink>
+    <StyledLink to="group">Home</StyledLink>
     <StyledLink to="add-user">Add user</StyledLink>
   </Wrapper>
 );
