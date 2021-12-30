@@ -8,8 +8,8 @@ const Navigation = () => (
       <br />
       Buddy
     </Logo>
-    <StyledLink to="group">Home</StyledLink>
-    <StyledLink to="add-user">Add user</StyledLink>
+    <StyledLink to="group">Dashboard</StyledLink>
+    {/* <StyledLink to="add-user">Add user</StyledLink> */}
   </Wrapper>
 );
 

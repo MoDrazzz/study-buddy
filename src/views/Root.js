@@ -1,5 +1,4 @@
 import React from 'react';
-import AddUser from 'views/AddUser';
 import { GlobalStyle } from 'assets/styles/GlobalStyle';
 import { theme } from 'assets/styles/theme';
 import { ThemeProvider } from 'styled-components';
@@ -15,8 +14,10 @@ const Root = () => {
         <MainTemplate>
           <Routes>
             <Route exact path="/" element={<Navigate to="/group/" />} />
-            <Route exact path="/group/:id" element={<Dashboard />} />
-            <Route exact path="/add-user" element={<AddUser />} />
+            <Route exact path="/group">
+              <Route exact path=":id" element={<Dashboard />} />
+              <Route exact path="" element={<Dashboard />} />
+            </Route>
           </Routes>
         </MainTemplate>
       </ThemeProvider>

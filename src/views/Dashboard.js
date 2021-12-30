@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
-import { Link, useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import UsersList from 'components/organisms/UsersList/UsersList';
+import { Wrapper, GroupLink, GroupButton } from 'views/Dashboard.styles';
+import { Title } from 'components/atoms/Title/Title';
 
 const Dashboard = () => {
   const [students, setStudents] = useState([]);
   const [groups, setGroups] = useState([]);
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,19 +25,25 @@ const Dashboard = () => {
       .get(`/students/${id || groups[0]}`)
       .then(({ data }) => setStudents(data.students))
       .catch((err) => console.log(err));
-  }, [id, groups]);
+    if (!id) {
+      navigate('/group/A');
+    }
+  }, [id, groups, navigate]);
 
   return (
-    <ViewWrapper>
-      <nav>
+    <Wrapper>
+      <Title>
+        Group: {id || groups[0]}
         {groups.map((group) => (
-          <Link key={group} to={`/group/${group}`}>
-            {group}
-          </Link>
+          <GroupLink key={group} to={`/group/${group}`}>
+            <GroupButton>{group}</GroupButton>
+          </GroupLink>
         ))}
-      </nav>
-      <UsersList users={students} />
-    </ViewWrapper>
+      </Title>
+      <ViewWrapper>
+        <UsersList users={students} />
+      </ViewWrapper>
+    </Wrapper>
   );
 };
 
